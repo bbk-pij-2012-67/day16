@@ -1,0 +1,42 @@
+Case Study: Request Support Application
+
+Introduction
+This case study describes the development of a request support application for a facilities management company. The application has been and continues to be developed for the company after a specific need was identified.
+The business of the company is providing refrigeration and mechanical/electrical servicing to a prominent supermarket chain in the UK. As such there are a number of engineers who provide these services and require parts to complete required repairs. Previously, part ordering was performed by calling our specialised help desk. This produced a number of problems, such as orders becoming lost, misunderstood, or required information being omitted. It was thought that by having engineers filling out a Word document and emailing it that we would be able to centralise the requests. After expelling the difficulty of such a system I suggested the development of a simple web site that would collect the information and send the email.
+
+First Stage: Part Ordering Website
+	Planning
+	The initial plan was to develop a single web page, formatted for the mobile devices that are used: HTC Touch 2 and Nokia E5. The web page would display a form in which each field must be filled when used. After completion of the form, the engineer would press a send button and an email would be sent to a special mailbox. 
+	Development
+	Development was done using ASP.NET and VB.NET. VB.NET was used due to my experience as a VB6 developer. Form authentication was used in the application to ensure any request can be linked to a particular engineer as as to prevent bogus requests. (I avoided Active Directory due to issues outside the realm of this study). To realise the plan, a Multiview control was used to present the page in concise sections to the engineers. An in-memory data table structure was also used to maintain a list of parts required by the engineer. When an engineer presses the send button, all data from the form and the data table is formatted in an HTML email and sent using the MailMessage class.
+	Testing
+	This was tested using various phones by myself and then by a small group of engineers. a few changes were made but basically it functioned well.
+	Rollout
+	There was no roll out at this stage.
+Second Stage: Data Management and Administration
+	Planning
+	Due to management's satisfaction with the application they wanted to expand the application to include a back-end database, and a front end management system. An employee would manage the requests that came in. This would include amending requests and adding information that was not requested in the engineer form. Additional information would be related to costs and charging, as the Finance Department would also need to pull information. This also meant that a report had to be made available to various stakeholders, particularly Finance.
+In addition to this it was becoming more vital to develop administration pages. These pages would provide an interface to manage users and the application itself without direct management of the SQL Server tables.
+	Development
+	The initial application now had to be amended to interact with a SQL Server database and SQL Server Reporting Services. The necessary changes were made and and Excel report added. A web interface was added for the new employee. This was a page listing provided by GridView and DetailView controls; FormView controls were used to edit or delete requests. Stored procedures were used to manipulate the data tables. Where possible, datasource controls were used to speed up development. Since the initial engineer form was a series of text boxes, radio lists and drop down lists, ADO connection, and command objects were used directly in code.
+
+Pages were also developed to manipulate the users through the ASP.NET Membership classes. During the develop it was necessary to amend the native membership database to include other information, such as managers of each user. 
+	Testing
+	Thorough testing was performed first on my local development environment and then on the live servers. Users were involved in making test orders. A number of corrections were made to the original form entering process. The data management pages proved more challenging, mostly from the point of view of presenting the information in a way the user could improve their usage. This is an ongoing exercise and has resulted in a much improved experience for all users.
+	Roll Out
+	Rollout occurred using this stage. It is at this point that numerous debugging and interface enhancements occurred.
+Third Stage: Beyond Economic Repair Reporting
+	Planning
+	When a piece of equipment cannot be repaired within reasonable cost, a report is prepared and sent to the customer. This is a simple add-on to the system. Information is collected from the engineer in a form similar to the part ordering form. An email alert is sent to a manager who clicks on a link to see a formatted version of the BER request. The request can be then amended and the finished form downloaded as an Excel spreadsheet (which is the format of the original manually produced forms).
+	Development
+	The formatted forms use a Form control to allow for editing or deleting. It is similar to the data management section of the part ordering site. I attempted to use a VBA mechanism to produce the Excel documents but licensing issues and time prevented that from being a reality. A MIME mechanism was used instead to allow the downloading of the form (web page) as an Excel document.
+	Testing
+	Besides my initial testing, this has been tested by management and is currently being used. An additional feature which is present on the part ordering system is to be added (uploading of photos).
+	Roll Out
+	The site has been added through an additional link on the original system. 
+Fourth Stage: Tool Ordering
+	Planning
+	Currently under developing is a tool ordering system. This offers no new system features. It is simply to allow engineers to request tools through the website and to manage a list of tools that each engineer has.
+	
+Conclusions
+	The application has taken approximately six months to development. This length of time is due to the fact that my main role in the company is IT Technician and limited time is available for development work. This is my first large scale ASP.NET application. As a result of this development I have been able to development skills in ASP.NET Forms development with Forms Authentication; SQL Server development and Transact-SQL programming; VB.NET programming and class development; and SQL Server Reporting. 
